@@ -1,6 +1,6 @@
 default_env = ["LANG=en_US.UTF-8", "LANGUAGE=en_US:en", "LC_ALL=en_US.UTF-8"]
 
-_c_lang_config = {
+_c54_lang_config = {
     "template": """//PREPEND BEGIN
 #include <stdio.h>
 //PREPEND END
@@ -31,7 +31,7 @@ int main() {
     }
 }
 
-_c_lang_spj_compile = {
+_c54_lang_spj_compile = {
     "src_name": "spj-{spj_version}.c",
     "exe_name": "spj-{spj_version}",
     "max_cpu_time": 3000,
@@ -40,13 +40,13 @@ _c_lang_spj_compile = {
     "compile_command": "/usr/bin/gcc -DONLINE_JUDGE -O2 -w -fmax-errors=3 -std=c11 {src_path} -lm -o {exe_path}"
 }
 
-_c_lang_spj_config = {
+_c54_lang_spj_config = {
     "exe_name": "spj-{spj_version}",
     "command": "{exe_path} {in_file_path} {user_out_file_path}",
     "seccomp_rule": "c_cpp"
 }
 
-_cpp_lang_config = {
+_cpp54_lang_config = {
     "template": """//PREPEND BEGIN
 #include <iostream>
 //PREPEND END
@@ -77,7 +77,7 @@ int main() {
     }
 }
 
-_cpp_lang_spj_compile = {
+_cpp54_lang_spj_compile = {
     "src_name": "spj-{spj_version}.cpp",
     "exe_name": "spj-{spj_version}",
     "max_cpu_time": 3000,
@@ -86,13 +86,13 @@ _cpp_lang_spj_compile = {
     "compile_command": "/usr/bin/g++ -DONLINE_JUDGE -O2 -w -fmax-errors=3 -std=c++14 {src_path} -lm -o {exe_path}"
 }
 
-_cpp_lang_spj_config = {
+_cpp54_lang_spj_config = {
     "exe_name": "spj-{spj_version}",
     "command": "{exe_path} {in_file_path} {user_out_file_path}",
     "seccomp_rule": "c_cpp"
 }
 
-_c48_lang_config = {
+_c_lang_config = {
     "template": """//PREPEND BEGIN
 #include <stdio.h>
 //PREPEND END
@@ -125,7 +125,7 @@ int main() {
     }
 }
 
-_c48_lang_spj_compile = {
+_c_lang_spj_compile = {
     "src_name": "spj-{spj_version}.c",
     "exe_name": "spj-{spj_version}",
     "max_cpu_time": 3000,
@@ -134,13 +134,13 @@ _c48_lang_spj_compile = {
     "compile_command": "/usr/bin/gcc-4.8 -DONLINE_JUDGE -w -fmax-errors=3 {src_path} -lm -o {exe_path}"
 }
 
-_c48_lang_spj_config = {
+_c_lang_spj_config = {
     "exe_name": "spj-{spj_version}",
     "command": "{exe_path} {in_file_path} {user_out_file_path}",
     "seccomp_rule": "c_cpp"
 }
 
-_cpp48_lang_config = {
+_cpp_lang_config = {
     "template": """//PREPEND BEGIN
 #include <iostream>
 //PREPEND END
@@ -173,7 +173,7 @@ int main() {
     }
 }
 
-_cpp48_lang_spj_compile = {
+_cpp_lang_spj_compile = {
     "src_name": "spj-{spj_version}.cpp",
     "exe_name": "spj-{spj_version}",
     "max_cpu_time": 3000,
@@ -182,7 +182,7 @@ _cpp48_lang_spj_compile = {
     "compile_command": "/usr/bin/g++-4.8 -DONLINE_JUDGE -w -fmax-errors=3 {src_path} -lm -o {exe_path}"
 }
 
-_cpp48_lang_spj_config = {
+_cpp_lang_spj_config = {
     "exe_name": "spj-{spj_version}",
     "command": "{exe_path} {in_file_path} {user_out_file_path}",
     "seccomp_rule": "c_cpp"
@@ -262,14 +262,14 @@ _py3_lang_config = {
 }
 
 languages = [
+    {"config": _c54_lang_config, "spj": {"compile": _c54_lang_spj_compile, "config": _c54_lang_spj_config},
+     "name": "C54", "description": "GCC 5.4", "content_type": "text/x-csrc"},
+    {"config": _cpp54_lang_config, "spj": {"compile": _cpp54_lang_spj_compile, "config": _cpp54_lang_spj_config},
+     "name": "C++54", "description": "G++ 5.4", "content_type": "text/x-c++src"},
     {"config": _c_lang_config, "spj": {"compile": _c_lang_spj_compile, "config": _c_lang_spj_config},
-     "name": "C", "description": "GCC 5.4", "content_type": "text/x-csrc"},
+     "name": "C", "description": "GCC 4.8", "content_type": "text/x-csrc"},
     {"config": _cpp_lang_config, "spj": {"compile": _cpp_lang_spj_compile, "config": _cpp_lang_spj_config},
-     "name": "C++", "description": "G++ 5.4", "content_type": "text/x-c++src"},
-    {"config": _c48_lang_config, "spj": {"compile": _c48_lang_spj_compile, "config": _c48_lang_spj_config},
-     "name": "C48", "description": "GCC 4.8", "content_type": "text/x-csrc"},
-    {"config": _cpp48_lang_config, "spj": {"compile": _cpp48_lang_spj_compile, "config": _cpp48_lang_spj_config},
-     "name": "C++48", "description": "G++ 4.8", "content_type": "text/x-c++src"},
+     "name": "C++", "description": "G++ 4.8", "content_type": "text/x-c++src"},
     {"config": _java_lang_config, "name": "Java", "description": "OpenJDK 1.8", "content_type": "text/x-java"},
     {"config": _py2_lang_config, "name": "Python2", "description": "Python 2.7", "content_type": "text/x-python"},
     {"config": _py3_lang_config, "name": "Python3", "description": "Python 3.5", "content_type": "text/x-python"},
