@@ -57,7 +57,7 @@ class ContestAPI(APIView):
         for ip_range in data["allowed_ip_ranges"]:
             try:
                 ip_network(ip_range, strict=False)
-            except ValueError as e:
+            except ValueError:
                 return self.error(f"{ip_range} is not a valid cidr network")
         if not contest.real_time_rank and data.get("real_time_rank"):
             cache_key = f"{CacheKey.contest_rank_cache}:{contest.id}"
@@ -234,7 +234,7 @@ class DownloadContestSubmissions(APIView):
 
         exclude_admin = request.GET.get("exclude_admin") == "1"
         zip_path = self._dump_submissions(contest, exclude_admin)
-        delete_files.apply_async((zip_path,), countdown=300)
+        delete_files.send_with_options(args=(zip_path,), delay=300_000)
         resp = FileResponse(open(zip_path, "rb"))
         resp["Content-Type"] = "application/zip"
         resp["Content-Disposition"] = f"attachment;filename={os.path.basename(zip_path)}"
